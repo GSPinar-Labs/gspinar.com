@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import redLogo from "../assets/images/red-logo.webp";
+import redCover from "../assets/images/red-cover.webp";
+import redBonos from "../assets/images/red-bonos.webp";
+---
+
+<Layout
+  title="Red del Pinar | Grupo Scout Pinar"
+  description="La Red del Pinar es un fondo de becas para que ningún niño o niña del grupo se quede sin escultismo."
+>
+  <section class="red">
+    <div class="container-wide">
+      <div class="columns red__intro">
+        <div class="column">
+          <h2>¿Qué es «La Red del Pinar»?</h2>
+          <Image class="red__logo" src={redLogo} alt="" layout="constrained" loading="lazy" />
+        </div>
+        <div class="column red__col-text">
+          <p>
+            Es un fondo de becas destinado a ayudar a cubrir gastos a las familias del
+            grupo que lo soliciten para que sus hijos e hijas puedan seguir formando
+            parte de nuestro grupo.
+          </p>
+          <p>
+            Una vez cubierto, el dinero podrá ser destinado a hacer nuestro grupo más
+            respetuoso con el medio ambiente.
+          </p>
+          <Button href="#colab">Colabora</Button>
+        </div>
+      </div>
+
+      <Image
+        class="red__cover"
+        src={redCover}
+        alt=""
+        layout="constrained"
+        loading="lazy"
+      />
+
+      <div class="columns red__for">
+        <div class="column red__col-text">
+          <p>
+            Para gente como tú, que ha formado parte o conoce nuestro proyecto y
+            quiere que muchos niños disfruten de esta experiencia.
+          </p>
+        </div>
+        <div class="column red__col-cta">
+          <h2>¿Para quien?</h2>
+          <Button href="#colab">Colabora</Button>
+        </div>
+      </div>
+
+      <h1 class="red__heading">Bonos</h1>
+      <Image
+        class="red__bonos"
+        src={redBonos}
+        alt="Bonos de La Red del Pinar"
+        layout="constrained"
+        loading="lazy"
+      />
+
+      <h1 id="colab" class="red__heading">Colabora</h1>
+      <p>
+        Manda un correo a
+        <a href="mailto:tesoreriapinar@gmail.com"><em>tesoreriapinar@gmail.com</em></a>
+        diciendo la cantidad que quieres aportar.
+      </p>
+      <p>Ellos te harán llegar una autorización bancaria y…</p>
+
+      <h2 class="red__ready">¡Listo! Ya serás parte de esta Red.</h2>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .red {
+    padding: 4rem 0;
+  }
+
+  .red__intro {
+    align-items: flex-start;
+  }
+
+  .red__col-text {
+    flex-basis: 40%;
+  }
+
+  :global(.red__logo) {
+    display: block;
+    margin-inline: auto;
+    width: 249px;
+    height: auto;
+  }
+
+  :global(.red__cover) {
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  .red__for {
+    align-items: center;
+  }
+
+  .red__for .red__col-text {
+    flex-basis: 66.66%;
+  }
+
+  .red__col-cta {
+    flex-basis: 33.33%;
+  }
+
+  .red__heading {
+    text-align: center;
+    color: #000;
+    margin-top: 2rem;
+  }
+
+  :global(.red__bonos) {
+    width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .red__ready {
+    text-align: center;
+    color: #fff;
+    background-color: #9b51e0;
+    padding: 1.25em 2.375em;
+    margin: 2rem 0;
+  }
+</style>

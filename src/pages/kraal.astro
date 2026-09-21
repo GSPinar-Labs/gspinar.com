@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Cargo {
+  title: string;
+  email?: string;
+  members: string[];
+}
+
+const cargos: Cargo[][] = [
+  [
+    {
+      title: "Coordinación",
+      email: "coordinacion@gruposcoutpinar.com",
+      members: ["Ángela", "María", "Irene", "Alba", "Nico"],
+    },
+    {
+      title: "Secretaría",
+      email: "secretaria@gruposcoutpinar.com",
+      members: ["Sara", "Ana Mi.", "Adriana", "Jorge E."],
+    },
+    { title: "Comité de Familias", members: ["Sandra", "Lucas", "Nuria"] },
+    {
+      title: "LOPIVI",
+      email: "del.proteccion.gsp@gmail.com",
+      members: ["Jorge E.", "Irene", "Sara", "Ainhoa"],
+    },
+    {
+      title: "Web",
+      email: "web@gruposcoutpinar.com",
+      members: ["Ainhoa", "Lucas"],
+    },
+    { title: "Redes", members: ["Ana Mi.", "Sara", "Carla", "Sandra", "Irene", "Adriana"] },
+  ],
+  [
+    {
+      title: "Cohesión",
+      members: ["Sara", "Adriana", "Alba", "Marta", "Nico", "Ana Mo.", "Jorge D"],
+    },
+    {
+      title: "Tesorería",
+      email: "tesoreria@gruposcoutpinar.com",
+      members: ["Carla", "Andrés", "Andrea", "Jorge D."],
+    },
+    {
+      title: "Material e Inveriones",
+      members: ["Jorge E.", "Blanca", "Jorge D.", "Valeria", "Ángela", "Ainhoa"],
+    },
+    { title: "EDM", members: ["Ana Mo.", "Nuria"] },
+    {
+      title: "Transportes",
+      email: "transportes@gruposcoutpinar.com",
+      members: ["Blanca", "Nico"],
+    },
+    { title: "Botiquín", members: ["Adriana", "Sandra"] },
+    { title: "Soci", members: ["Andrés", "Ángela"] },
+  ],
+];
+---
+
+<Layout title="Kraal | Grupo Scout Pinar">
+  <article class="prose kraal">
+    <p>
+      El equipo de responsables o kraales lo formamos jóvenes mayores de edad, que
+      voluntariamente y de manera altruista dedicamos parte de nuestro tiempo libre
+      a la educación en valores de los educandos, utilizando como principal vía el
+      juego, orientado a cada una de sus necesidades. Seremos, por tanto, lxs
+      encargadxs de acompañarles en su trayectoria scout.
+    </p>
+
+    <blockquote>
+      <p>
+        Siempre Listos Para Servir (S.L.P.S.) –<em><strong> R. Baden-Powell</strong></em>
+      </p>
+    </blockquote>
+
+    <hr />
+
+    <h1>Responsables</h1>
+    <p>
+      Actualmente, el equipo de monitores no estará disponible hasta que se revele el
+      día de la acampada inicial.
+    </p>
+  </article>
+
+  <section class="cargos">
+    <div class="container">
+      <h1>Cargos</h1>
+      <div class="columns">
+        {
+          cargos.map((columna) => (
+            <div class="column">
+              {columna.map((cargo) => (
+                <div class="cargo">
+                  <h3>{cargo.title}</h3>
+                  {cargo.email && (
+                    <p class="cargo__email">
+                      <a href={`mailto:${cargo.email}`}>{cargo.email}</a>
+                    </p>
+                  )}
+                  <ul>
+                    {cargo.members.map((m) => (
+                      <li>{m}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .kraal {
+    padding-bottom: 1rem;
+  }
+
+  .cargos {
+    background-color: #000;
+    color: #fff;
+    padding: 4rem 0;
+  }
+
+  .cargos h1,
+  .cargos h3 {
+    color: #fff;
+  }
+
+  .cargos .column {
+    flex-basis: 50%;
+  }
+
+  .cargo {
+    margin-bottom: 1.5rem;
+  }
+
+  .cargo h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  .cargo__email {
+    margin: 0;
+  }
+
+  .cargo__email a {
+    color: #abb8c3;
+  }
+
+  .cargo ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+  }
+</style>

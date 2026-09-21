@@ -1,11 +1,225 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import MediaText from "../components/MediaText.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import home1 from "../assets/images/home-1.webp";
+import home2 from "../assets/images/home-2.webp";
+import home3 from "../assets/images/home-3.webp";
+import home4 from "../assets/images/home-4.webp";
+import home5 from "../assets/images/home-5.webp";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Grupo Scout Pinar">
+  <section class="welcome">
+    <div class="welcome__inner">
+      <p class="welcome__lead">Te damos la bienvenida al Grupo Scout Pinar</p>
+      <h6 class="welcome__subtitle">GSP 708!</h6>
+
+      <div class="columns welcome__row">
+        <div class="column welcome__text">
+          <p>
+            Somos el Grupo Scout Pinar, un grupo perteneciente a ASDE y EdM que se
+            ubica en Manoteras, Hortaleza, Madrid.
+          </p>
+          <p>
+            Llevamos más de 47 años de escultismo. Educamos en valores a través del
+            juego, manteniendo siempre un contacto con la naturaleza, con el lema
+            «dejar el mundo mejor de como lo encontramos».
+          </p>
+          <p>
+            Somos una asociación formada íntegramente por voluntarios. La mayoría de
+            nosotros empezamos como educandos, y trabajamos codo con codo por y para
+            nuestros chavales.
+          </p>
+          <p>
+            Nuestro Grupo se compone de cinco grandes ramas: castores, lobatos,
+            rangers, pioneros y rutas. Todos ellos acompañados por el kraal (los
+            monitores), quienes les educan y acompañan en su trayectoria y evolución
+            en el escultismo, transmitiéndoles los valores que en su día nos
+            enseñaron a nosotros.
+          </p>
+        </div>
+        <div class="column welcome__image welcome__image--offset">
+          <Image src={home1} alt="" layout="constrained" loading="lazy" />
+        </div>
+        <div class="column welcome__image">
+          <Image src={home2} alt="" layout="constrained" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="columns welcome__row">
+        <div class="column welcome__image welcome__image--wide">
+          <Image src={home3} alt="" layout="constrained" loading="lazy" />
+        </div>
+        <div class="column welcome__text">
+          <p>
+            El escultismo es más que solo una actividad extracurricular. Es una forma
+            de educación no formal, un estilo de vida que enseña, desde pequeños, a
+            ser un ciudadano responsable y comprometido con la sociedad. A través de
+            juegos, campamentos, proyectos de servicio social…, podrás contribuir a
+            mejorar el entorno que te rodea y hacer del mundo un lugar más justo y
+            sostenible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <MediaText image={home4} alt="" reverse background="#eedaae">
+    <h2>Nuestros valores.</h2>
+    <p>
+      No se trata solo de divertirse, sino también de contribuir a crear un mundo
+      mejor. En el Grupo Scout Pinar, inculcamos un profundo respeto por la
+      naturaleza y por los demás, mediante nuestros valores: solidaridad,
+      compañerismo, respeto, cariño…
+    </p>
+  </MediaText>
+
+  <MediaText image={home5} alt="" background="#dbeaf7">
+    <h2>Para tod@s</h2>
+    <p>
+      No importa tu edad, tu origen o tus intereses, en el Grupo Scout Pinar hay un
+      lugar para ti. Te animamos a que unirte al fuego que alumbra y calienta esta
+      gran familia, y que vela y recuerda a quienes dejaron las cenizas para que las
+      nuevas generaciones echen raíces en nuestro Grupo.
+    </p>
+  </MediaText>
+
+  <section class="closing">
+    <div class="closing__inner">
+      <p class="closing__line closing__line--1">GRUPO SCOUT PINAR</p>
+      <p class="closing__line closing__line--2">Más de 45 años</p>
+      <p class="closing__line closing__line--3">Educando.</p>
+      <div class="closing__actions">
+        <Button href="/contacto/">Contacto</Button>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .welcome {
+    background-color: #fffaed;
+    padding: 6vw;
+  }
+
+  .welcome__inner {
+    max-width: var(--wide-size);
+    margin-inline: auto;
+  }
+
+  .welcome__lead {
+    font-family: var(--font-body);
+    color: #000;
+    font-size: 6vw;
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 0;
+  }
+
+  .welcome__subtitle {
+    color: #000;
+    margin-top: 0.5rem;
+  }
+
+  .welcome__row {
+    margin-top: 2rem;
+    align-items: flex-start;
+    gap: 3vw;
+  }
+
+  .welcome__row:first-of-type .welcome__text {
+    flex-basis: 33.38%;
+  }
+
+  .welcome__row:first-of-type .welcome__image {
+    flex-basis: 33%;
+  }
+
+  .welcome__image--offset {
+    padding-top: 2vw;
+  }
+
+  .welcome__row:last-of-type .welcome__image--wide {
+    flex-basis: 69%;
+  }
+
+  .welcome__row:last-of-type .welcome__text {
+    flex-basis: 33%;
+    align-self: center;
+    padding-top: 2vw;
+  }
+
+  .welcome__image :global(img) {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+  }
+
+  .welcome__image--wide :global(img) {
+    max-width: 100%;
+  }
+
+  @media (max-width: 782px) {
+    .welcome {
+      padding: 8vw 1.25rem;
+    }
+
+    .welcome__lead {
+      font-size: 2.5rem;
+    }
+
+    .welcome__image :global(img) {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<style>
+  .closing {
+    background-color: #000;
+    color: #fff;
+    padding: 4vw;
+  }
+
+  .closing__inner {
+    max-width: 700px;
+    margin-inline: auto 0;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .closing__line {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .closing__line--1 {
+    color: #ffffff61;
+    font-size: clamp(57.838px, 3.615rem + ((1vw - 3.2px) * 7.581), 120px);
+    letter-spacing: -2px;
+  }
+
+  .closing__line--2 {
+    color: #ffffffad;
+    font-size: clamp(38.682px, 2.418rem + ((1vw - 3.2px) * 4.063), 72px);
+  }
+
+  .closing__line--3 {
+    color: #ffffffd1;
+    font-size: clamp(67.975px, 4.248rem + ((1vw - 3.2px) * 9.759), 148px);
+    letter-spacing: -2px;
+    text-align: right;
+  }
+
+  .closing__actions {
+    margin-top: 1.5rem;
+  }
+</style>

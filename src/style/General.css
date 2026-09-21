@@ -1,0 +1,239 @@
+@font-face {
+  font-family: 'Atkinson';
+  src: url('../fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson';
+  src: url('../fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GSPinarSans';
+  src: url('../fonts/GSPinarSans-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --color-base: #333333;
+  --color-heading: #2a2a2a;
+  --color-primary: #008aff;
+  --color-secondary: #f7f9fc;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-body: 'Atkinson', system-ui, -apple-system, sans-serif;
+  --font-heading: 'GSPinarSans', system-ui, -apple-system, sans-serif;
+
+  --content-size: 960px;
+  --wide-size: 1140px;
+  --global-padding: 24px;
+  --block-gap: 24px;
+
+  --fluid-16: clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.366), 17px);
+  --fluid-20: clamp(16px, 1rem + ((1vw - 3.2px) * 0.366), 20px);
+  --fluid-36: clamp(22px, 1.375rem + ((1vw - 3.2px) * 1.7), 36px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fluid-16);
+  line-height: 1.75;
+  color: var(--color-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  animation: content-fade-in 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+main.is-leaving {
+  opacity: 0;
+}
+
+@keyframes content-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main {
+    animation: none;
+    transition: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-heading);
+  margin: 0 0 0.75rem;
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  font-weight: inherit;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid #e0e0e0;
+  font-style: italic;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2rem 0;
+}
+
+/* Layout utilities (mirror WP constrained/wide layout) */
+.container {
+  max-width: var(--content-size);
+  margin-inline: auto;
+  padding-inline: var(--global-padding);
+}
+
+.container-wide {
+  max-width: var(--wide-size);
+  margin-inline: auto;
+  padding-inline: var(--global-padding);
+}
+
+.alignfull {
+  width: 100%;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+}
+
+.column {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 781px) {
+  .columns {
+    flex-wrap: wrap;
+  }
+
+  .columns > .column {
+    flex-basis: 100% !important;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-white);
+  background: var(--color-black);
+  border: none;
+  border-radius: 0;
+  padding: 0.85em 1.4em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.btn--center {
+  text-align: center;
+}
+
+/* Generic spacing helpers */
+.spacer {
+  height: 1rem;
+}
+
+/* Prose: readable text pages */
+.prose {
+  max-width: var(--content-size);
+  margin-inline: auto;
+  padding: 4rem var(--global-padding);
+}
+
+.prose img {
+  display: block;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.prose ul {
+  padding-left: 1.25rem;
+}
+
+.prose h1 {
+  font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.5rem);
+}
+
+.prose h2 {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+}
+
+.prose h3 {
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.5rem);
+}

@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import comite from "../assets/images/comite.webp";
+
+const nombres = [
+  "Pilar",
+  "Elena",
+  "Alejandra",
+  "Alex",
+  "Beatriz",
+  "David",
+  "Natalia",
+  "Aldha",
+  "Alvaro",
+  "Angie",
+  "Erika",
+  "Jesus",
+  "Marga",
+  "Nati",
+  "Pedro",
+  "Laura",
+];
+
+const mailto = "mailto:info@gruposcoutpinar.com";
+---
+
+<Layout
+  title="Comité de Familias | Grupo Scout Pinar"
+  description="El Comité de Familias del Grupo Scout Pinar: madres y padres que colaboran en la toma de decisiones."
+>
+  <section class="comite">
+    <div class="container-wide">
+      <div class="columns comite__intro">
+        <div class="column comite__media">
+          <Image src={comite} alt="" layout="constrained" loading="lazy" />
+        </div>
+        <div class="column comite__text">
+          <h2>¡Hola! Somos el Comité de Familias.</h2>
+          <p>
+            Somos las madres y padres que colaboramos en la toma de decisiones del
+            Grupo Scout Pinar.
+          </p>
+          <p>Si quieres tomar parte en este proyecto, puedes hacerlo abajo.</p>
+          <Button href={mailto}>quiero formar parte</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h3 class="comite__names">{nombres.join("  ")}</h3>
+
+  <section class="comite__cta">
+    <div class="container">
+      <h1>Actualmente, somos (15) representes de las familias.</h1>
+      <Button href={mailto}>quiero formar parte</Button>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .comite {
+    padding: 4rem 0;
+  }
+
+  .comite__intro {
+    align-items: center;
+  }
+
+  .comite__media {
+    flex: 0 0 45%;
+  }
+
+  .comite__media :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .comite__text {
+    flex: 1 1 0;
+  }
+
+  .comite__names {
+    text-align: center;
+    line-height: 2.5;
+    font-family: var(--font-body);
+    padding: 3rem var(--global-padding);
+    margin: 0;
+  }
+
+  .comite__cta {
+    background-color: #000;
+    color: #fff;
+    padding: 4rem 0;
+  }
+
+  .comite__cta h1 {
+    color: #fff;
+  }
+</style>

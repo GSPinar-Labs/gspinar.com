@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import historiaNi from "../assets/images/historia-ni.webp";
+import historiaSoci from "../assets/images/historia-soci.webp";
+---
+
+<Layout title="Nuestra Historia | Grupo Scout Pinar">
+  <article class="prose">
+    <p>
+      El Grupo Scout Pinar 708 es una asociación perteneciente a ASDE – EdM
+      (Exploradores de Madrid), que lleva en activo desde el año 1977.
+    </p>
+    <p>
+      Nos reunimos habitualmente los sábados de 17:00 a 19:00 en un lugar al que
+      llamamos “La Soci”. Esta está situada en
+      <a href="https://goo.gl/maps/89TVhzbPw5txDNkE7">C/Cuevas de Almanzora Nº46, 28033 Madrid</a>.
+    </p>
+    <p>
+      Con 47 años de vida, el grupo ha ido evolucionando hasta lo que somos ahora,
+      contando con más de 100 miembros, entre educandos (niñas y niños de entre 6 y
+      18 años) y monitores (o kraales).
+    </p>
+    <p>
+      Para un mejor funcionamiento, el grupo se divide en cinco ramas. Cada uno de
+      ellos cuenta con objetivos diferentes adecuados a su edad e inquietudes.
+    </p>
+
+    <Image src={historiaNi} alt="" layout="constrained" loading="lazy" />
+
+    <p>
+      <strong>
+        Seguramente os preguntéis por nuestra historia, por cómo hemos llegado hasta
+        aquí. Pues bien, manos a la obra:
+      </strong>
+    </p>
+    <p>
+      El Grupo Scout Pinar, anteriormente Santa María del Pinar nació en 1977, fue
+      fundado por el Padre Emilio que más tarde llevaría la parroquia de Santa María
+      del Pinar en el barrio de Pinar de Chamartín.
+    </p>
+    <p>
+      En 1987 el Grupo cumplía 10 años ya, y seguramente sería uno de los momentos
+      más fuertes de nuestra historia, alcanzo los 100 chavales dentro de sus filas.
+    </p>
+    <p>
+      En 1990, la historia del Grupo sufre un vuelco; nuestros vecinos, el Grupo
+      Scout Kilimanjaro, está a punto de desaparecer por diversos motivos. Es
+      entonces cuando el Santa María del Pinar acoge gustosamente a los Lobatos y
+      los Rangers que quedaban del Kilimanjaro, y el Grupo pasa a llamarse Pinar.
+    </p>
+    <p>
+      Desde entonces, han pasado gran cantidad de cosas en el Grupo…sin ir más lejos,
+      allá por 1998 un incendio en la Parroquia arrasó con parte de nuestro material.
+      Después las obras llegaron a nuestros locales, pudiendo disfrutarlos durante
+      los siguientes seis años.
+    </p>
+    <p>
+      En 2004 el cura D. Manuel, nos invitó a marcharnos de la casa que durante 27
+      años nos había visto crecer. Los pocos que quedábamos en el grupo nos
+      reuníamos cada sábado en el parque, hasta que un buen día la Asociación de
+      Vecinos de Manoteras nos recibió con los brazos abiertos. Y desde entonces allí
+      realizamos nuestras actividades creciendo poco a poco con nuestros nuevos
+      vecinos del barrio de Manoteras.
+    </p>
+
+    <Image src={historiaSoci} alt="" layout="constrained" loading="lazy" />
+  </article>
+</Layout>

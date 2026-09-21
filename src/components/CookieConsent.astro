@@ -1,0 +1,165 @@
+---
+import { url } from "../utils/url";
+---
+
+<div
+    class="cookie-overlay"
+    id="cookie-consent"
+    transition:persist="cookie-consent"
+    hidden
+>
+    <div
+        class="cookie-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-title"
+    >
+        <h2 id="cookie-title">Aviso de cookies</h2>
+        <p>
+            Usamos cookies propias y de terceros (por ejemplo, Google Analytics)
+            para analizar el uso del sitio y mejorar tu experiencia. Para
+            continuar, acepta o rechaza su uso. Más información en nuestra{" "}
+            <a href={url("/234-2/")}>Política de Privacidad y Cookies</a>.
+        </p>
+        <div class="cookie-dialog__actions">
+            <button
+                type="button"
+                data-consent="rejected"
+                class="cookie-btn cookie-btn--ghost"
+            >
+                Rechazar
+            </button>
+            <button type="button" data-consent="accepted" class="cookie-btn">
+                Aceptar
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cookie-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.65);
+    }
+
+    .cookie-overlay[hidden] {
+        display: none;
+    }
+
+    .cookie-dialog {
+        background: var(--color-white);
+        color: var(--color-base);
+        width: 100%;
+        max-width: 560px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .cookie-dialog h2 {
+        margin-top: 0;
+        color: var(--color-heading);
+    }
+
+    .cookie-dialog p {
+        margin-bottom: 1.5rem;
+    }
+
+    .cookie-dialog__actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .cookie-btn {
+        font-family: inherit;
+        font-size: 0.95rem;
+        line-height: 1;
+        padding: 0.8em 1.4em;
+        border: 1px solid transparent;
+        border-radius: 0;
+        cursor: pointer;
+        background: var(--color-black);
+        color: var(--color-white);
+    }
+
+    .cookie-btn--ghost {
+        background: transparent;
+        color: var(--color-base);
+        border-color: rgba(0, 0, 0, 0.35);
+    }
+
+    .cookie-btn:hover {
+        opacity: 0.85;
+    }
+
+    @media (max-width: 700px) {
+        .cookie-dialog {
+            padding: 1.5rem;
+        }
+
+        .cookie-dialog__actions {
+            flex-direction: column-reverse;
+        }
+
+        .cookie-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<style is:global>
+    body:has(#cookie-consent:not([hidden])) {
+        overflow: hidden;
+    }
+</style>
+
+<script is:inline>
+    (function () {
+        var KEY = "cookie-consent";
+        var overlay = document.getElementById("cookie-consent");
+        if (!overlay) return;
+
+        function hasDecided() {
+            try {
+                return Boolean(localStorage.getItem(KEY));
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function sync() {
+            overlay.hidden = hasDecided();
+        }
+
+        if (overlay.dataset.bound !== "true") {
+            overlay.dataset.bound = "true";
+
+            overlay.querySelectorAll("[data-consent]").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    try {
+                        localStorage.setItem(
+                            KEY,
+                            btn.getAttribute("data-consent"),
+                        );
+                    } catch (e) {}
+                    sync();
+                });
+            });
+
+            document.addEventListener("astro:page-load", sync);
+        }
+
+        sync();
+
+        if (!hasDecided()) {
+            var acceptBtn = overlay.querySelector('[data-consent="accepted"]');
+            acceptBtn && acceptBtn.focus();
+        }
+    })();
+</script>

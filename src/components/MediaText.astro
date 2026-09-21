@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  image: ImageMetadata;
+  alt?: string;
+  reverse?: boolean;
+  background?: string;
+}
+
+const { image, alt = "", reverse = false, background } = Astro.props;
+---
+
+<section
+  class:list={["media-text", { "media-text--reverse": reverse }]}
+  style={background ? `background-color:${background}` : undefined}
+>
+  <div class="media-text__media">
+    <Image src={image} alt={alt} layout="constrained" loading="lazy" />
+  </div>
+  <div class="media-text__content">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .media-text {
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    align-items: center;
+    width: 100%;
+  }
+
+  .media-text--reverse {
+    grid-template-columns: 1fr 50%;
+  }
+
+  .media-text__media {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    align-self: center;
+  }
+
+  .media-text--reverse .media-text__media {
+    grid-column: 2;
+  }
+
+  .media-text__media :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .media-text__content {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 2em;
+  }
+
+  .media-text--reverse .media-text__content {
+    grid-column: 1;
+  }
+
+  @media (max-width: 782px) {
+    .media-text,
+    .media-text--reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .media-text__media,
+    .media-text--reverse .media-text__media,
+    .media-text__content,
+    .media-text--reverse .media-text__content {
+      grid-column: 1;
+    }
+
+    .media-text__media {
+      grid-row: 1;
+    }
+
+    .media-text__content {
+      grid-row: 2;
+    }
+  }
+</style>

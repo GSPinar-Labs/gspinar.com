@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const ramas = [
+  { name: "Castores", ages: "(de 6 a 8 años) (1º y 2º de Primaria)", color: "#ff6900" },
+  { name: "Lobatos", ages: "(de 8 a 11 años) (3º, 4º y 5º de Primaria)", color: "#fcb900" },
+  { name: "Rangers", ages: "(de 12 a 14 años) (6º de Primaria, 1º y 2º ESO)", color: "#0693e3" },
+  { name: "Pioneros", ages: "(de 15 a 17 años) (3º, 4º ESO y 1º BACH)", color: "#cf2e2e" },
+  { name: "Rutas", ages: "(17 en adelante…)", color: "#00d084" },
+];
+---
+
+<Layout title="Ramas | Grupo Scout Pinar">
+  <article class="prose">
+    <p>Estas son las ramas(o secciones) en las que se divide el Grupo Scout:</p>
+    {
+      ramas.map((rama) => (
+        <p class="rama" style={`background-color:${rama.color}`}>
+          <strong>{rama.name}</strong> {rama.ages}
+        </p>
+      ))
+    }
+  </article>
+</Layout>
+
+<style>
+  .rama {
+    padding: 1.25em 2.375em;
+    margin: 0 0 1rem;
+  }
+</style>

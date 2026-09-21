@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Button from "./Button.astro";
+
+interface Props {
+  icon: ImageMetadata;
+  title: string;
+  description: string;
+  href: string;
+  external?: boolean;
+  cta?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  href,
+  external = false,
+  cta = "Ver más",
+} = Astro.props;
+---
+
+<article class="card">
+  <div class="card__icon">
+    <Image src={icon} alt="" width={512} height={512} loading="lazy" />
+  </div>
+  <div class="card__body">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <div class="card__actions">
+      <Button href={href} external={external}>{cta}</Button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 31px;
+    padding: 1rem;
+    height: 100%;
+  }
+
+  .card__icon {
+    flex: 0 0 33%;
+    text-align: center;
+  }
+
+  .card__icon :global(img) {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+  }
+
+  .card__body {
+    flex: 1 1 60%;
+    min-width: 0;
+  }
+
+  .card__body h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .card__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+</style>

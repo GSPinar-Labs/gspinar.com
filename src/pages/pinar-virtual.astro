@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import pvLogo from "../assets/images/pv-logo.webp";
+import pvEdicion from "../assets/images/pv-edicion.webp";
+---
+
+<Layout
+  title="Pinar Virtual | Grupo Scout Pinar"
+  description="El Pinar Virtual es el entorno de administración privado para voluntari@s del Grupo Scout Pinar."
+>
+  <section class="pv">
+    <div class="container-wide">
+      <div class="columns">
+        <div class="column pv__col">
+          <Image class="pv__logo" src={pvLogo} alt="" layout="constrained" loading="lazy" />
+          <div class="pv__actions">
+            <Button href="https://login.gspinar.com/" external>Acceso Pinar Virtual</Button>
+          </div>
+          <p>
+            El Pinar Virtual es un el de administración privado para voluntari@s del
+            Grupo Scout Pinar. Se compone de mail, apps y servicios.
+          </p>
+        </div>
+        <div class="column pv__col">
+          <Image class="pv__logo" src={pvEdicion} alt="" layout="constrained" loading="lazy" />
+          <div class="pv__actions">
+            <Button href="https://blog.gspinar.com/amor" external>Acceso Edición Blog</Button>
+          </div>
+          <p>Si colaboras y editas el blog puedes hacerlo aquí.</p>
+        </div>
+      </div>
+
+      <hr />
+
+      <p>Agradecemos a Google, Microsoft y Canva por patrocinar esta iniciativa.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .pv {
+    padding: 4rem 0;
+  }
+
+  .pv__col {
+    text-align: center;
+  }
+
+  :global(.pv__logo) {
+    display: block;
+    margin-inline: auto;
+    width: 220px;
+    height: auto;
+  }
+
+  .pv__actions {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+</style>

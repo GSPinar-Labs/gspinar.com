@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+
+import iconRedDelPinar from "../assets/images/icon-red-del-pinar.webp";
+import iconFotos from "../assets/images/icon-fotos.webp";
+import iconRamas from "../assets/images/icon-ramas.webp";
+import iconKraal from "../assets/images/icon-kraal.webp";
+import iconCalendario from "../assets/images/icon-calendario.webp";
+import iconFamilias from "../assets/images/icon-familias.webp";
+import iconDocumentos from "../assets/images/icon-documentos.webp";
+
+const apartados = [
+  {
+    icon: iconRedDelPinar,
+    title: "Red del Pinar",
+    description: "Ayuda al crecimiento del grupo gracias donativos en becas.",
+    href: "/red-del-pinar/",
+  },
+  {
+    icon: iconFotos,
+    title: "Fotos",
+    description: "Mira todas las fotos de campamentos, salidas y acampadas.",
+    href: "https://blog.gspinar.com/fotos/",
+    external: true,
+  },
+  {
+    icon: iconRamas,
+    title: "Ramas",
+    description:
+      "Conoce las ramas del Grupo Scout Pinar, la organización por edades dentro del grupo.",
+    href: "/ramas/",
+  },
+  {
+    icon: iconKraal,
+    title: "Kraal",
+    description:
+      "L@s voluntari@s que se ocupan de que todo funcione. Monitor@s de las Ramas y organizador@s.",
+    href: "/kraal/",
+  },
+  {
+    icon: iconCalendario,
+    title: "Calendario",
+    description: "Calendario de eventos del Grupo Scout Pinar.",
+    href: "/calendario/",
+  },
+  {
+    icon: iconFamilias,
+    title: "Comité de Familias",
+    description:
+      "La unión hace la fuerza. Representación de las familias dentro del grupo.",
+    href: "/comite-de-familias/",
+  },
+  {
+    icon: iconDocumentos,
+    title: "Documentos",
+    description: "Descarga Documentos, archivos importantes y autorizaciones.",
+    href: "/documentos/",
+  },
+];
+---
+
+<Layout title="Apartados | Grupo Scout Pinar">
+  <section class="apartados">
+    <div class="container-wide">
+      <div class="apartados__grid">
+        {
+          apartados.map((item) => (
+            <Card
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+              href={item.href}
+              external={item.external}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .apartados {
+    padding: 4rem 0;
+  }
+
+  .apartados__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 782px) {
+    .apartados__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

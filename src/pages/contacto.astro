@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout
+    title="Contacto | Grupo Scout Pinar"
+    description="Contacta con el Grupo Scout Pinar: inscripciones, monitorado y dónde encontrarnos."
+>
+    <section class="contacto">
+        <div class="container-wide">
+            <div class="columns">
+                <div class="column contacto__block">
+                    <h2>Inscribir a niñ@s</h2>
+                    <p>
+                        Si quieres inscribirte{" "}
+                        <i>(autorización parental previa)</i> o inscribir a
+                        alguien en nuestro grupo scout, rellena la siguiente
+                        encuesta:
+                    </p>
+                    <div class="contacto__actions">
+                        <Button
+                            href="https://forms.gle/rYZuWKm4PT9g8E1R8"
+                            external
+                        >
+                            Rellenar lista de espera
+                        </Button>
+                    </div>
+                </div>
+                <div class="column contacto__block">
+                    <h2>Únete como monitor</h2>
+                    <p>
+                        Si quieres formar parte del equipo de monitores, envía
+                        un correo a{" "}
+                        <a href="mailto:info@gruposcoutpinar.com">
+                            info@gruposcoutpinar.com
+                        </a>{" "}
+                        con:
+                    </p>
+                    <ul>
+                        <li>
+                            Tipo de prácticas: intensivas (campamento de verano
+                            del 15 al 30 de julio) o extensivas (reuniones de
+                            los sábados)
+                        </li>
+                        <li>Currículum actualizado con teléfono de contacto</li>
+                        <li>(Opcional) Cómo nos has encontrado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr />
+
+            <h2>Dónde encontrarnos</h2>
+            <div class="columns">
+                <div class="column">
+                    <p>
+                        <strong>Dirección:</strong>
+                        <br />
+                        <a
+                            href="https://goo.gl/maps/aYifM9WWSmNERVoy5"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            C/ Cuevas de Almanzora Nº 46, 28033 Madrid
+                        </a>
+                    </p>
+                    <p>
+                        <strong>Metro: </strong>
+                        <a
+                            href="https://goo.gl/maps/igDCr55iQDE7wiH38"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Manoteras Línea 4
+                        </a>
+                        ,{" "}
+                        <a
+                            href="https://maps.app.goo.gl/TKTBBPBX63AMAKxo7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Hortaleza Línea 4
+                        </a>
+                        .<br />
+                        <strong>Autobuses:</strong> 7, 29, 129
+                    </p>
+                    <p>
+                        <strong>Contacto:</strong>
+                        <br />
+                        <a href="mailto:info@gruposcoutpinar.com">
+                            info@gruposcoutpinar.com
+                        </a>
+                    </p>
+                </div>
+                <div class="column">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.8367698673744!2d-3.6600679!3d40.4781602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4229a4a74e93a4d%3A0xaea93a4a74e93a4d!2sC.%20Cuevas%20de%20Almanzora%2C%2046%2C%2028033%20Madrid!5e0!3m2!1ses!2ses!4v1234567890123!5m2!1ses!2ses"
+                        width="100%"
+                        height="300"
+                        style="border:0"
+                        allowfullscreen
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa de la ubicación del Grupo Scout Pinar"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .contacto {
+        padding: 4rem 0;
+    }
+
+    .contacto__block {
+        padding-inline: 1rem;
+    }
+
+    .contacto__actions {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+</style>

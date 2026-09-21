@@ -1,0 +1,265 @@
+---
+import { Image } from "astro:assets";
+import { url } from "../utils/url";
+import banner from "../assets/images/banner.jpg";
+import logo from "../assets/images/logo.png";
+
+const nav = [
+  { label: "Inicio", href: "/" },
+  { label: "Apartados", href: "/apartados/" },
+  { label: "Nuestra Historia", href: "/quienes-somos/" },
+  { label: "Blog", href: "https://blog.gspinar.com/", external: true },
+  { label: "Fotos", href: "https://blog.gspinar.com/fotos/", external: true },
+  { label: "Contacto", href: "/contacto/" },
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const pathname = Astro.url.pathname.replace(base, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href);
+---
+
+<header class="site-header" transition:persist>
+  <div class="banner">
+    <Image
+      class="banner__bg"
+      src={banner}
+      alt=""
+      aria-hidden="true"
+      layout="full-width"
+      loading="eager"
+    />
+    <div class="banner__inner">
+      <a href={url("/")} class="banner__logo" aria-label="Grupo Scout Pinar">
+        <Image src={logo} alt="Logo del Grupo Scout Pinar" width={150} height={150} />
+      </a>
+      <h2 class="banner__title">
+        <a href={url("/")}>Grupo Scout Pinar</a>
+      </h2>
+
+      <nav class="nav" aria-label="Navegación">
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-label="Abrir el menú"
+          aria-expanded="false"
+        >
+          <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 5v1.5h14V5H5z"></path>
+            <path d="M5 12.8h14v-1.5H5v1.5z"></path>
+            <path d="M5 19h14v-1.5H5V19z"></path>
+          </svg>
+          <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="m13.06 12 6.47-6.47-1.06-1.06L12 10.94 5.53 4.47 4.47 5.53 10.94 12l-6.47 6.47 1.06 1.06L12 13.06l6.47 6.47 1.06-1.06L13.06 12Z"
+            ></path>
+          </svg>
+        </button>
+
+        <ul class="nav__list">
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={url(item.href)}
+                  data-nav-link
+                  class:list={{ "is-active": !item.external && isActive(item.href) }}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
+                  aria-current={!item.external && isActive(item.href) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .banner {
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+  }
+
+  .banner :global(.banner__bg) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 56% 12%;
+    opacity: 0.55;
+  }
+
+  .banner__inner {
+    position: relative;
+    min-height: 532px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .banner__logo {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .banner__logo :global(img) {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .banner__title {
+    margin: 1rem 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .banner__title a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav__toggle {
+    display: none;
+    margin-inline: auto;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .nav__toggle svg {
+    fill: #fff;
+  }
+
+  .nav__toggle .icon-close {
+    display: none;
+  }
+
+  .nav__toggle[aria-expanded="true"] .icon-open {
+    display: none;
+  }
+
+  .nav__toggle[aria-expanded="true"] .icon-close {
+    display: block;
+  }
+
+  .nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: center;
+  }
+
+  .nav__list a {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .nav__list a:hover {
+    text-decoration: underline;
+  }
+
+  .nav__list a.is-active {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 700px) {
+    .site-header {
+      position: relative;
+      z-index: 100;
+    }
+
+    .banner {
+      overflow: visible;
+    }
+
+    .banner__inner {
+      min-height: 320px;
+    }
+
+    .nav__toggle {
+      display: block;
+    }
+
+    .nav__list {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 1.5rem;
+      margin-top: 0;
+    }
+
+    .nav__list.is-open {
+      display: flex;
+      animation: nav-drop 0.3s ease-out;
+    }
+  }
+
+  @keyframes nav-drop {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toggle = document.querySelector<HTMLButtonElement>(".nav__toggle");
+    const list = document.querySelector<HTMLElement>(".nav__list");
+
+    if (toggle && !toggle.dataset.bound) {
+      toggle.dataset.bound = "true";
+      toggle.addEventListener("click", () => {
+        const isOpen = list?.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Cerrar el menú" : "Abrir el menú");
+      });
+    }
+
+    list?.classList.remove("is-open");
+    toggle?.setAttribute("aria-expanded", "false");
+
+    const path = location.pathname;
+    document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]").forEach((a) => {
+      const href = a.getAttribute("href") ?? "";
+      const active = href === "/" ? path === "/" : !a.target && path.startsWith(href);
+      a.classList.toggle("is-active", active);
+      if (active) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  });
+</script>

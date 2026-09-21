@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+
+import docAutorizacion from "../assets/images/doc-autorizacion.webp";
+import docFicha from "../assets/images/doc-ficha.webp";
+import docBancaria from "../assets/images/doc-bancaria.webp";
+
+const documentos = [
+  {
+    image: docAutorizacion,
+    title: "Autorización Anual",
+    href: "https://drive.google.com/file/d/1a2KsgEVgQKwt-al7j9XVr2NNzsLV7GVy/view?usp=sharing",
+  },
+  {
+    image: docFicha,
+    title: "Asociación Vecinal",
+    href: "https://drive.google.com/file/d/141YZuI9TYYCP8XdIwyzCDOJ_VMRqhfn9/view?usp=sharing",
+  },
+  {
+    image: docBancaria,
+    title: "Cuenta Bancaria",
+    href: "https://drive.google.com/file/d/1w7h3T1byGk-9D5htkhcqV4qI4AhYMdLi/view?usp=drive_link",
+  },
+];
+---
+
+<Layout
+  title="Documentos | Grupo Scout Pinar"
+  description="Descarga documentos, archivos importantes y autorizaciones del Grupo Scout Pinar."
+>
+  <section class="documentos">
+    <div class="container-wide">
+      <div class="documentos__grid">
+        {
+          documentos.map((doc) => (
+            <div class="documentos__item">
+              <Image src={doc.image} alt={doc.title} layout="constrained" loading="lazy" />
+              <p class="documentos__caption">{doc.title}</p>
+              <div class="documentos__actions">
+                <Button href={doc.href} external>
+                  Descargar
+                </Button>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .documentos {
+    padding: 4rem 0;
+  }
+
+  .documentos__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .documentos__item {
+    background: var(--color-white);
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+  }
+
+  .documentos__item :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .documentos__caption {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .documentos__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: 782px) {
+    .documentos__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
